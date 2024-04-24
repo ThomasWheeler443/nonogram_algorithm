@@ -11,35 +11,34 @@ typedef struct Tomography {
 } Tomography;
 
 class TomographySet {
-    private:
-        int width;
-        int height;
-        Tomography *row;
-        Tomography *col;
-    
-    public:
-        TomographySet(int width, int height);
-        TomographySet(const char *file);
+  private:
+    int width;
+    int height;
+    Tomography *row;
+    Tomography *col;
 
-        ~TomographySet();
+  public:
+    TomographySet(int width, int height);
+    TomographySet(const char *file);
 
-        int getWidth();
-        int getHeight();
+    ~TomographySet();
 
-        void save(const char *file);
-        
-        Tomography getRowTomography(int row);
-        Tomography getColTomography(int col);
+    int getWidth();
+    int getHeight();
 
-        int maxColSize();
-        int maxRowSize();
+    void save(const char *file);
 
-        int charRowWidth();
-        int charColWidth();
+    Tomography getRowTomography(int row);
+    Tomography getColTomography(int col);
 
-        char ***colFormatArray(int *arrW, int *arrH, int *numChar);
-        char ***rowFormatArray(int *arrW, int *arrH, int *numChar);
+    int maxColSize();
+    int maxRowSize();
 
+    int charRowWidth();
+    int charColWidth();
+
+    char ***colFormatArray(int *arrW, int *arrH, int *numChar);
+    char ***rowFormatArray(int *arrW, int *arrH, int *numChar);
 };
 
 #endif

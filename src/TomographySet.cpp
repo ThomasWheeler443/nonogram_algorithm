@@ -1,6 +1,7 @@
 #include "TomographySet.h"
 #include <algorithm>
 #include <cstdlib>
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -154,7 +155,7 @@ void TomographySet::save(const char *file) {
     }
 
     // Write col tomography
-    for (int i = 0; i < height; i++) {
+    for (int i = 0; i < width; i++) {
         if (col[i].size == 0) {
             fout << "NONE\n";
         } else {
@@ -225,7 +226,17 @@ int TomographySet::maxRowSize() {
  * @return int
  */
 int TomographySet::charRowWidth() {
-    return NULL;
+    // get largest number in row tomography
+    int largest = 0;
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < row[i].size; i++) {
+            if (row[i].tuple[j] > largest) {
+                largest = row[i].tuple[j];
+            }
+        }
+    }
+
+    return to_string(largest).length() + 1;
 }
 
 /**
@@ -235,19 +246,17 @@ int TomographySet::charRowWidth() {
  * @return int
  */
 int TomographySet::charColWidth() {
-    return NULL;
-}
+    // get largest number in col tomography
+    int largest = 0;
+    for (int i = 0; i < width; i++) {
+        for (int j = 0; j < col[i].size; i++) {
+            if (col[i].tuple[j] > largest) {
+                largest = col[i].tuple[j];
+            }
+        }
+    }
 
-/**
- * @brief Create a 2d array of c strings representing the col tomography
- *
- * @param arrW
- * @param arrH
- * @param numChar
- * @return char***
- */
-char ***TomographySet::colFormatArray(int *arrW, int *arrH, int *numChar) {
-    return NULL;
+    return to_string(largest).length() + 1;
 }
 
 /**
@@ -259,5 +268,87 @@ char ***TomographySet::colFormatArray(int *arrW, int *arrH, int *numChar) {
  * @return char***
  */
 char ***TomographySet::rowFormatArray(int *arrW, int *arrH, int *numChar) {
-    return NULL;
+    // Calculate width, height, and number of characters per string
+    *arrW = this->maxRowSize();
+    *arrH = height;
+    *numChar = this->charRowWidth();
+
+    int a;
+
+    string tempString;
+
+    // Create columns
+    char ***outArr = (char ***)calloc(*arrW, sizeof(char **));
+    for (int i = *arrW - 1; i >= 0; i--) {
+        // Allocate rows
+        outArr[i] = (char **)calloc(*arrH, sizeof(char *));
+        for (int j = 0; j < *arrH; j++) {
+
+            // Allocate c string and fill with spaces
+            outArr[i][j] = (char *)calloc(*numChar, sizeof(char));
+            memset(outArr[i][j], ' ', *numChar);
+
+            // Start with last element of first array
+            a = i - (*arrW - row[j].size);
+
+            if (a >= 0) {
+                tempString = to_string(row[j].tuple[a]);
+
+                while (tempString.size() < *numChar) {
+                    tempString = ' ' + tempString;
+                }
+
+                memcpy(outArr[i][j], tempString.c_str(), *numChar);
+            }
+        }
+    }
+
+    return outArr;
+}
+
+/**
+ * @brief Create a 2d array of c strings representing the col tomography
+ *
+ * @param arrW
+ * @param arrH
+ * @param numChar
+ * @return char***
+ */
+char ***TomographySet::colFormatArray(int *arrW, int *arrH, int *numChar) {
+
+    // Calculate width, height, and number of characters per string
+    *arrW = width;
+    *arrH = this->maxColSize();
+    *numChar = this->charColWidth();
+
+    int a;
+
+    string tempString;
+
+    // Create columns
+    char ***outArr = (char ***)calloc(*arrW, sizeof(char **));
+    for (int i = 0; i < *arrW; i++) {
+        // Allocate rows
+        outArr[i] = (char **)calloc(*arrH, sizeof(char *));
+        for (int j = *arrH - 1; j >= 0; j--) {
+
+            // Allocate c string and fill with spaces
+            outArr[i][j] = (char *)calloc(*numChar, sizeof(char));
+            memset(outArr[i][j], ' ', *numChar);
+
+            // Start with last element of first array
+            a = j - (*arrH - col[i].size);
+
+            if (a >= 0) {
+                tempString = to_string(col[i].tuple[a]);
+                while (tempString.size() < *numChar) {
+                    tempString = ' ' + tempString;
+                }
+
+                memcpy(outArr[i][j], tempString.c_str(), *numChar);
+            }
+        }
+    }
+
+    return outArr;
 }

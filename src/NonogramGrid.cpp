@@ -59,6 +59,59 @@ NonogramGrid::~NonogramGrid() {
     delete tomo;
 }
 
-void NonogramGrid::print() {
-    //
+/**
+ * @brief Return tomography pointer
+ * 
+ * @return TomographySet* 
+ */
+TomographySet *NonogramGrid::getTomography() {
+    return tomo;
+}
+
+/**
+ * @brief Return grid pointer
+ * 
+ * @return Tile** 
+ */
+Tile **NonogramGrid::getGrid() {
+    return grid;
+}
+
+/**
+ * @brief Change a single tile of Monogram grid
+ * 
+ * @param tile 
+ * @param x 
+ * @param y 
+ */
+void NonogramGrid::changeTile(Tile tile, int x, int y) {
+    grid[x][y] = tile;
+}
+
+/**
+ * @brief Change a part of a row in the Monogram grid
+ * 
+ * @param tile 
+ * @param row 
+ * @param x1 
+ * @param x2 
+ */
+void NonogramGrid::changeRow(Tile tile, int row, int x1, int x2) {
+    for(int i = x1; i <= x2; i++) {
+        grid[i][row] = tile;
+    }
+}
+
+/**
+ * @brief Change a part of a column in the Monogram grid
+ * 
+ * @param tile 
+ * @param col 
+ * @param y1 
+ * @param y2 
+ */
+void NonogramGrid::changeCol(Tile tile, int col, int y1, int y2) {
+    for(int i = y1; i <= y2; i++) {
+        grid[col][i] = tile;
+    }
 }

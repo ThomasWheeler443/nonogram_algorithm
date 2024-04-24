@@ -22,8 +22,13 @@ class NonogramGrid {
     NonogramGrid(TomographySet *tomo);
 
     ~NonogramGrid();
-    
-    void print();
+
+    TomographySet *getTomography();
+    Tile **getGrid();
+
+    void changeTile(Tile tile, int x, int y);
+    void changeRow(Tile tile, int row, int x1, int x2);
+    void changeCol(Tile tile, int col, int y1, int y2);
 };
 
 #endif

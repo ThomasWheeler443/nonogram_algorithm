@@ -13,6 +13,13 @@ add_executable(
   tomo_test
   test/test_tomo_io.cpp
   ${SRC_DIR}/TomographySet.cpp
+)
+
+add_executable(
+  print_buff_test
+  test/test_print_buff.cpp
+  ${SRC_DIR}/TomographySet.cpp
   ${SRC_DIR}/NonogramGrid.cpp
+  ${SRC_DIR}/CharBuffer.cpp
 )
 
