@@ -1,0 +1,15 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Nonogram Solver Algorithm
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Thomas
+    family-names: Wheeler
+    name-particle: Thomas
+    email: thomwheeler04@vt.edu
+repository-code: 'https://github.com/ThomasWheeler443/nonogram_algorithm'
