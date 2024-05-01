@@ -18,6 +18,7 @@ class CharBuffer {
     CharBuffer(NonogramGrid *grid);
     void update();
     void print();
+    void resetPos();
 };
 
 #endif

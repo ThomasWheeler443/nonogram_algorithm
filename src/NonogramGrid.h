@@ -26,9 +26,21 @@ class NonogramGrid {
     TomographySet *getTomography();
     Tile **getGrid();
 
+    Tile getTile(int x, int y);
+
     void changeTile(Tile tile, int x, int y);
     void changeRow(Tile tile, int row, int x1, int x2);
     void changeCol(Tile tile, int col, int y1, int y2);
+
+    bool verifyRow(int row);
+    bool verifyCol(int col);
+    bool verifyAll();
+
+    void markRow(int row);
+    void markCol(int col);
+
+    int getWidth();
+    int getHeight();
 };
 
 #endif

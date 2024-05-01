@@ -4,6 +4,8 @@ cmake_minimum_required(VERSION 3.5)
 # Name of the project
 project(Nonograms)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 # Create a few variables for the folder names, so they are easier to rename in
 # the future
 set(SRC_DIR src)
@@ -21,5 +23,14 @@ add_executable(
   ${SRC_DIR}/TomographySet.cpp
   ${SRC_DIR}/NonogramGrid.cpp
   ${SRC_DIR}/CharBuffer.cpp
+)
+
+add_executable(
+  brute_force_test
+  test/test_brute_force.cpp
+  ${SRC_DIR}/TomographySet.cpp
+  ${SRC_DIR}/NonogramGrid.cpp
+  ${SRC_DIR}/CharBuffer.cpp
+  ${SRC_DIR}/BruteSolver.cpp
 )
 

@@ -32,7 +32,7 @@ CharBuffer::CharBuffer(NonogramGrid *nonogram) {
 
     // Get width
     width = rowW + colW;
-    height = rowH + colW;
+    height = rowH + colH;
 
     // Create buffer
     // Create columns
@@ -85,7 +85,7 @@ void CharBuffer::update() {
     Tile **grid = nonogram->getGrid();
 
     for (int i = rowW; i < width; i++) {
-        for (int j = colH; j < height; i++) {
+        for (int j = colH; j < height; j++) {
             switch (grid[i - rowW][j - colH]) {
             case blank:
                 buffer[i][j][rCharLength - 1] = '-';
@@ -108,5 +108,11 @@ void CharBuffer::print() {
             cout << buffer[j][i];
         }
         cout << "\n";
+    }
+}
+
+void CharBuffer::resetPos() {
+    for(int i = 0; i < height; i++) {
+        cout << "\r";
     }
 }

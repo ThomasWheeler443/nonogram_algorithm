@@ -10,7 +10,7 @@ using namespace std;
  */
 int main() {
     // Make tomography set
-    TomographySet *test = new TomographySet("../test/tomo_test_in.txt");
+    TomographySet *test = new TomographySet("../nonograms/tomo_test_in.txt");
     cout << "Created Tomography from file\n";
 
     // Save tomography set
