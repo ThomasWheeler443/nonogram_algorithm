@@ -34,7 +34,7 @@ DFSSolver::DFSSolver(NonogramGrid *nono) {
 DFSSolver::~DFSSolver() {
 
     for (int i = 0; i < height; i++) {
-        for (int j = 0; j < numRowPos[i]; i++) {
+        for (int j = 0; j < numRowPos[i]; j++) {
             free(rowBuffer[i][j]);
         }
         free(rowBuffer[i]);
@@ -42,8 +42,6 @@ DFSSolver::~DFSSolver() {
 
     free(rowBuffer);
     free(numRowPos);
-
-    delete nono;
 }
 
 /**
@@ -205,7 +203,7 @@ void DFSSolver::createRowFromBBList(int row, bool *list, int numSlots,
 }
 
 /**
- * @brief Calculate the number of possibilites for each row
+ * @brief Calculate the number of possibilities for each row
  *
  */
 void DFSSolver::calcPosib() {

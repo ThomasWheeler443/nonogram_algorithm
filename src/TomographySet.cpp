@@ -49,6 +49,8 @@ TomographySet::TomographySet(const char *file) {
     for (int i = 0; i < height; i++) {
         getline(fin, line);
         if (line.compare("NONE") == 0) {
+            row[i].size = 0;
+            row[i].sum = 0;
             continue;
         }
 

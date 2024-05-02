@@ -54,9 +54,6 @@ NonogramGrid::~NonogramGrid() {
         free(grid[i]);
     }
     free(grid);
-
-    // Free tomography
-    delete tomo;
 }
 
 /**
@@ -134,6 +131,7 @@ bool NonogramGrid::verifyRow(int row) {
     int streakNum = 0;
     int streak = 0;
     int tomoIndex = 0;
+    int total = 0;
     Tomography rowTomo = tomo->getRowTomography(row);
     for (int i = 0; i < width; i++) {
         if (!isStreak && grid[i][row] == filled) {
@@ -143,8 +141,10 @@ bool NonogramGrid::verifyRow(int row) {
             isStreak = true;
             streakNum++;
             streak++;
+            total++;
         } else if (grid[i][row] == filled) {
             streak++;
+            total++;
         } else if (isStreak) {
             isStreak = false;
             if (streak != rowTomo.tuple[tomoIndex]) {
@@ -154,7 +154,8 @@ bool NonogramGrid::verifyRow(int row) {
             streak = 0;
         }
     }
-    return streakNum == rowTomo.size;
+
+    return streakNum == rowTomo.size && total == rowTomo.sum;
 }
 
 /**
@@ -170,8 +171,9 @@ bool NonogramGrid::verifyCol(int col) {
     int streakNum = 0;
     int streak = 0;
     int tomoIndex = 0;
+    int total = 0;
     Tomography colTomo = tomo->getColTomography(col);
-    for (int i = 0; i < width; i++) {
+    for (int i = 0; i < height; i++) {
         if (!isStreak && grid[col][i] == filled) {
             if (tomoIndex >= colTomo.size) {
                 // Too many sections
@@ -180,8 +182,10 @@ bool NonogramGrid::verifyCol(int col) {
             isStreak = true;
             streakNum++;
             streak++;
+            total++;
         } else if (grid[col][i] == filled) {
             streak++;
+            total++;
         } else if (isStreak) {
             isStreak = false;
             if (streak != colTomo.tuple[tomoIndex]) {
@@ -192,7 +196,8 @@ bool NonogramGrid::verifyCol(int col) {
             streak = 0;
         }
     }
-    return streakNum == colTomo.size;
+
+    return streakNum == colTomo.size && total == colTomo.sum;
 }
 
 /**

@@ -17,7 +17,7 @@ BruteSolver::BruteSolver(NonogramGrid *grid) {
  * 
  */
 BruteSolver::~BruteSolver() {
-    delete grid;
+    //
 }
 
 /**
@@ -34,10 +34,12 @@ void BruteSolver::solve() {
     bool solved = false;
     while (!solved ) {
         
-        incTile(0);
-
         // Verification done in O((m*n)^2) time
         solved = grid->verifyAll();
+
+        if(!solved) {
+            incTile(0);
+        }
 
         count++;
     }

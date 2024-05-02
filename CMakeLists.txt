@@ -43,3 +43,22 @@ add_executable(
   ${SRC_DIR}/DFSSolver.cpp
 )
 
+add_executable(
+  test_all
+  test/test_all.cpp
+  ${SRC_DIR}/TomographySet.cpp
+  ${SRC_DIR}/NonogramGrid.cpp
+  ${SRC_DIR}/CharBuffer.cpp
+  ${SRC_DIR}/BruteSolver.cpp
+  ${SRC_DIR}/DFSSolver.cpp
+)
+
+add_executable(
+  mass_dfs_test
+  test/test_dfs_all.cpp
+  ${SRC_DIR}/TomographySet.cpp
+  ${SRC_DIR}/NonogramGrid.cpp
+  ${SRC_DIR}/CharBuffer.cpp
+  ${SRC_DIR}/DFSSolver.cpp
+)
+
