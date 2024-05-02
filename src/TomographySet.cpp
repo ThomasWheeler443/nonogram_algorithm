@@ -66,6 +66,11 @@ TomographySet::TomographySet(const char *file) {
             j++;
         }
         row[i].tuple[j] = stoi(line.substr(0, end), 0, 10);
+
+        row[i].sum = 0;
+        for(int k = 0; k < row[i].size; k++) {
+            row[i].sum += row[i].tuple[k];
+        }
     }
 
     // Get col tomography
@@ -89,6 +94,11 @@ TomographySet::TomographySet(const char *file) {
             j++;
         }
         col[i].tuple[j] = stoi(line.substr(0, end), 0, 10);
+
+        col[i].sum = 0;
+        for(int k = 0; k < col[i].size; k++) {
+            col[i].sum += col[i].tuple[k];
+        }
     }
 
     fin.close();

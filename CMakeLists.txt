@@ -34,3 +34,12 @@ add_executable(
   ${SRC_DIR}/BruteSolver.cpp
 )
 
+add_executable(
+  dfs_test
+  test/test_dfs.cpp
+  ${SRC_DIR}/TomographySet.cpp
+  ${SRC_DIR}/NonogramGrid.cpp
+  ${SRC_DIR}/CharBuffer.cpp
+  ${SRC_DIR}/DFSSolver.cpp
+)
+

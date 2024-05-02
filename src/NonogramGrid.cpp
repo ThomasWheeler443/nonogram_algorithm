@@ -257,3 +257,12 @@ int NonogramGrid::getWidth() {
 int NonogramGrid::getHeight() {
     return height;
 }
+
+
+void NonogramGrid::setGrid(Tile **grid) {
+    for(int i = 0; i < width; i++) {
+        for(int j = 0; j < height; j++) {
+            this->grid[i][j] = grid[i][j];
+        }
+    }
+}

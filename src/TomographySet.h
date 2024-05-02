@@ -7,6 +7,7 @@
  */
 typedef struct Tomography {
     int size;
+    int sum;
     int *tuple;
 } Tomography;
 

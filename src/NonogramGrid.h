@@ -41,6 +41,8 @@ class NonogramGrid {
 
     int getWidth();
     int getHeight();
+
+    void setGrid(Tile **grid);
 };
 
 #endif
